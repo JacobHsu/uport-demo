@@ -1,0 +1,21 @@
+{
+  "name": "uport-demo-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:JacobHsu/uport-site.git",
+  "author": "jacobhsu <jacob.hsu.tw@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^5.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "form-data": "^3.0.0",
+    "node-fetch": "^2.6.0",
+    "react-redux": "^7.2.0",
+    "readline": "^1.3.0",
+    "uport-credentials": "^1.3.0"
+  },
+  "scripts": {
+    "set": "node setup --env=stage"
+  }
+}

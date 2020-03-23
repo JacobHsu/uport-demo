@@ -48,7 +48,7 @@ function* requestDisclosure(action) {
   const callbackUrl = isMobile
     ? createCallbackUrl(callbackId)
     : createChasquiUrl(callbackId);
-
+  
   const expiresIn = 2 * 60; // seconds
   yield put(setLoading(REQ_DISCLOSURE, true));
   try {
@@ -65,6 +65,7 @@ function* requestDisclosure(action) {
       }
     });
     const { jwt } = response.json;
+    // console.log( jwt )
     const jwtUrl = yield call(createJwtUrl, jwt, callbackUrl, isMobile);
     yield put(reqDisclosureSuccess(callbackId, jwtUrl));
   } catch(ex) {

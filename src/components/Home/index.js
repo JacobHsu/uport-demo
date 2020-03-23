@@ -7,7 +7,7 @@ import * as theme from "../shared/theme";
 import { Container, medium } from "../shared/grid";
 import Header from "./Header";
 import Card from "../shared/ServiceCard";
-import AppDownload from "./AppDownloadContainer";
+// import AppDownload from "./AppDownloadContainer";
 import { SERVICES } from "../../constants/config";
 
 class Home extends React.Component {
@@ -29,7 +29,7 @@ class Home extends React.Component {
             colors={theme.colors[sid]} />)}
         </Container>
       </Cards>
-      <AppDownload />
+      {/* <AppDownload /> */}
     </Wrapper>)
   }
 }

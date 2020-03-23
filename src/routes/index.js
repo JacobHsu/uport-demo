@@ -29,9 +29,9 @@ export default () => (<ConnectedRouter history={history}>
       <App serviceId={registration.serviceId}>
         <Registration />
       </App>} />
-    {routes.map(route => <Route path={route.path} key={route.serviceId} render={() =>
+    {/* {routes.map(route => <Route path={route.path} key={route.serviceId} render={() =>
       <App serviceId={route.serviceId}>
         <Service serviceId={route.serviceId} basePath={route.path} />
-      </App>} />)}
+      </App>} />)} */}
   </Switch>
 </ConnectedRouter>);
