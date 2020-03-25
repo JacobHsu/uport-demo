@@ -6,7 +6,7 @@
   "repository": "https://github.com/uport-project/cleverland",
   "devDependencies": {
     "@sentry/webpack-plugin": "^1.6.2",
-    "aws-sdk": "^2.462.0",
+    "aws-sdk": "^2.645.0",
     "chai": "^4.2.0",
     "cloudfront-invalidate-cache": "^1.0.1",
     "commander": "^2.20.0",
@@ -41,6 +41,7 @@
     "uport-transports": "^0.2.5"
   },
   "scripts": {
+    "setup": "node node_scripts/setup --env=stage",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

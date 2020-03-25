@@ -40,6 +40,7 @@ app.get("/api/ping", (req, res) => {
     res.send("OK");
 });
 
+// 生成Qr Code
 app.post("/api/request_disclosure", async (req, res) => {
     console.log("/api/request_disclosure--")
     console.log(req.body); 
@@ -74,6 +75,35 @@ app.post("/api/request_disclosure", async (req, res) => {
 });
 
 app.get('/', (req, res) => res.send('Hello world!'))
+
+app.post("/api/send_verification", async (req, res) => {
+  console.log("/api/send_verification--")
+  const {
+    serviceId,
+    sub,
+    claim,
+    callbackUrl
+  } = req.body;
+  const credentials = getCredentials(serviceId);
+  const jwt = await credentials.createVerification({
+    sub,
+    vc: ISSUERS[serviceId].vc,
+    claim,
+    callbackUrl
+  });
+  res.json({ jwt });
+});
+
+app.post("/api/verify_credentials", async (req, res) => {
+  console.log("/api/verify_credentials--")
+  const { serviceId, token } = req.body;
+  const credentials = getCredentials(serviceId);
+  const response = await verifyJWT(token, { audience: credentials.did });
+  const profile = await credentials.processDisclosurePayload(response);
+  profile.publicEncKey = profile.boxPub;
+  res.json({ profile });
+});
+
 
 const port = process.env.PORT || 3001
 app.listen(port, () => 
