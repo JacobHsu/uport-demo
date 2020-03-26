@@ -32,6 +32,8 @@ AWS Security Token Service (AWS STS) [臨時安全登入資料](https://docs.aws
 [AWS Systems Manager](https://docs.aws.amazon.com/zh_cn/systems-manager/latest/userguide/systems-manager-quick-setup.html)
 管理與管控 > [Systems Manager](https://console.aws.amazon.com/systems-manager/)
 
+利用 Parameter Store (`Aws > 管理與管控 > Systems Manager > 參數存放區`) 來儲存 credentials 和 config 等機敏性參數  (`put-parameter`、`get-parameters`)
+
 AWS Systems Manager
 > [PutParameter](https://docs.aws.amazon.com/zh_cn/systems-manager/latest/APIReference/API_PutParameter.html)
 
@@ -53,4 +55,39 @@ const RPC_URL = "https://mainnet.infura.io/v3/5ffc47f65c4042ce847ef66a3fa70d4c";
         rpcUrl: RPC_URL //<--- Required Upgrade to uport-credentials@1.3.0
       }
     });
+```
+
+## yarn setup slsDeploy
+
+$ ./node_modules/.bin/sls
+生成  node_scripts 
+.gitignore serverless.yml handler.js
+
+`serverless.js` 對應 `serverless.yml
+
+```js
+  plugins: [
+    "serverless-express",
+    "serverless-scriptable-plugin",
+    "serverless-plugin-include-dependencies",
+    "serverless-offline",
+    "serverless-stack-output"
+  ],
+```
+
+`yarn add serverless-express serverless-scriptable-plugin`  
+`yarn add serverless-plugin-include-dependencies serverless-offline serverless-stack-output --dev`
+
+node_scripts\deploy_api.js
+
+https://serverless.com/  
+`npm install serverless -g` 全域安裝
+
+```js
+async function deployAPI() {
+  const args = argParse();
+  // npm install serverless -g
+  await run("sls", [ "deploy", "-v", "-s", args.env ]);
+  //await run("./node_modules/.bin/sls", [ "deploy", "-v", "-s", args.env ]);
+}
 ```

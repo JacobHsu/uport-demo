@@ -21,6 +21,7 @@ module.exports.run = async function(cmd, args, options={}) {
     shell: true,
     stdio: "inherit"
   };
+
   const proc = spawn(cmd, args, options);
   return new Promise((resolve, reject) => {
     proc.on("close", (code) => {

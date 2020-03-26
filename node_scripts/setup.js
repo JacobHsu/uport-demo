@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
 
-const { argParse, getInput } = require("./helpers");
+const { argParse, run, getInput } = require("./helpers");
 const { config } = require("../setup_config");
 const createIssuers = require("./create_issuers");
 
@@ -184,6 +184,10 @@ async function saveIssuerSecrets(env) {
     // Read Server.js  const ISSUERS = JSON.parse(process.env.ISSUERS); did: ISSUERS[serviceId].did,
 }
 
+async function slsDeploy(env) {
+  return run("yarn", [ "deploy:api", "--env", env ]);
+}
+
 async function setup() {
     const args = argParse();
   
@@ -191,7 +195,10 @@ async function setup() {
     //await prerequisites();
 
     // Save issuer secrets in SSM
-    await saveIssuerSecrets(args.env);
+    //await saveIssuerSecrets(args.env);
+
+    // Deploy Lambda
+    await slsDeploy(args.env);
 
 }
 
