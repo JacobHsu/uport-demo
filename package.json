@@ -6,7 +6,7 @@
   "repository": "https://github.com/uport-project/cleverland",
   "devDependencies": {
     "@sentry/webpack-plugin": "^1.6.2",
-    "aws-sdk": "^2.645.0",
+    "aws-sdk": "^2.814.0",
     "chai": "^4.2.0",
     "cloudfront-invalidate-cache": "^1.0.1",
     "commander": "^2.20.0",
